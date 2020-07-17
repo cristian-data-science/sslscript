@@ -22,4 +22,6 @@ cd /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/$domain .
 sudo rm default
 sudo systemctl restart nginx
+sudo apt-get install python-certbot-nginx -y
+
 sudo certbot renew --dry-run
