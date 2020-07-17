@@ -1,7 +1,7 @@
 read -p "Ingresa el nombre del dominio a configurar: " domain 
 read -p "Ingresa el la ruta de redirección (ej: http://192.168.1.100:1369): " ruta 
 
-install nginx
+sudo apt-get install nginx -y
 sudo touch /etc/nginx/sites-available/$domain
 echo "
 server {
