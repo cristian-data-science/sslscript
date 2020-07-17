@@ -1,0 +1,25 @@
+read -p "Ingresa el nombre del dominio a configurar: " domain 
+read -p "Ingresa el la ruta de redirección (ej: http://192.168.1.100:1369): " ruta 
+
+install nginx
+sudo touch /etc/nginx/sites-available/$domain
+echo "
+server {
+    listen 80;
+    listen [::]:80;    
+    server_name $domain;   
+    location / {
+        proxy_pass $ruta;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+" | sudo tee --append /etc/nginx/sites-available/$domain;
+cd /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/$domain .
+sudo rm default
+sudo systemctl restart nginx
+sudo certbot renew --dry-run
