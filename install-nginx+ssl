@@ -18,10 +18,9 @@ server {
     }
 }
 " | sudo tee --append /etc/nginx/sites-available/$domain;
-cd /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/$domain .
-sudo rm default
+sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/$domain
+sudo rm /etc/nginx/sites-avalaible/default
 sudo systemctl restart nginx
 sudo apt-get install python-certbot-nginx -y
-
+sudo certbot --nginx
 sudo certbot renew --dry-run
