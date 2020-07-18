@@ -20,6 +20,7 @@ server {
 " | sudo tee --append /etc/nginx/sites-available/$domain;
 sudo ln -s /etc/nginx/sites-avalaible/$domain /etc/nginx/sites-enabled/$domain
 sudo rm /etc/nginx/sites-avalaible/default
+sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 sudo apt-get install python-certbot-nginx -y
 sudo certbot --nginx
