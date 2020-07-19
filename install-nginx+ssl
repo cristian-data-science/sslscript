@@ -2,7 +2,7 @@ read -p "Ingresa el nombre del dominio a configurar: " domain
 read -p "Ingresa el la ruta de redirección (ej: http://192.168.1.100:1369): " ruta 
 x='$http_upgrade'
 y="'upgrade'"
-z='http_upgrade'
+z='$http_upgrade'
 w='$host'
 sudo apt-get install nginx -y
 sudo touch /etc/nginx/sites-available/$domain
